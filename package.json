@@ -1,0 +1,31 @@
+{
+  "name": "url-shortner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:frontend": "npm run dev -w frontend",
+    "start:backend": "npm run dev -w backend",
+    "dev": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsAasmaan/URL-Shortner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "bugs": {
+    "url": "https://github.com/itsAasmaan/URL-Shortner/issues"
+  },
+  "homepage": "https://github.com/itsAasmaan/URL-Shortner#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
