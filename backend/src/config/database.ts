@@ -48,6 +48,17 @@ class Database {
     return await this.pool.connect();
   }
 
+  public async testConnection(): Promise<boolean> {
+    try {
+      const result = await this.query("SELECT NOW()");
+
+      return true;
+    } catch (error) {
+      
+      return false;
+    }
+  }
+
   public async close(): Promise<void> {
     return await this.pool.end();
   }
