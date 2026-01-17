@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { SignOptions } from "jsonwebtoken";
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ interface EnvironmentConfiguration {
 
   jwt: {
     secret: string;
-    expiresIn: string;
+    expiresIn: SignOptions['expiresIn'];
   };
 
   rateLimit: {
@@ -59,8 +60,8 @@ const Configuration: EnvironmentConfiguration = {
   },
 
   jwt: {
-    secret: process.env.JWT_SECRET || "your-secret-key",
-    expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+    secret: process.env.JWT_SECRET || "super-secret-key",
+    expiresIn: (process.env.JWT_EXPIRES_IN || "7d") as SignOptions['expiresIn'],
   },
 
   rateLimit: {

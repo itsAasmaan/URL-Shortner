@@ -5,6 +5,8 @@ import Configuration from "./config/env.js";
 import database from "./config/database.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 
+import routes from './routes/index.js';
+
 const app: Application = express();
 
 app.use(
@@ -43,7 +45,7 @@ app.get("/health", async (req: Request, res: Response) => {
 });
 
 // API routes will be added below:
-// app.use('/api/v1', routes);
+app.use('/api/v1', routes);
 
 app.use(notFoundHandler);
 
