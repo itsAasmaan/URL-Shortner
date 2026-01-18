@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: 1,
-      staleTime: 5 * 60 * 1000,
+      staleTime: 5 * 60 * 1000, // 5 minutes
     },
   },
 });
@@ -49,24 +49,28 @@ function App() {
       </AuthProvider>
       <Toaster
         position="top-right"
+        gutter={12}
         toastOptions={{
-          duration: 3000,
+          duration: 4000,
+          className: "text-sm font-semibold rounded-xl border border-slate-100 shadow-xl",
           style: {
-            background: "#363636",
-            color: "#fff",
+            background: "#ffffff",
+            color: "#0f172a",
+            padding: "12px 16px",
           },
           success: {
-            duration: 3000,
             iconTheme: {
-              primary: "#10b981",
+              primary: "#2563eb",
               secondary: "#fff",
             },
           },
           error: {
-            duration: 4000,
             iconTheme: {
               primary: "#ef4444",
               secondary: "#fff",
+            },
+            style: {
+              border: "1px solid #fee2e2",
             },
           },
         }}
