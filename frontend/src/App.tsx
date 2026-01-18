@@ -8,6 +8,8 @@ import PrivateRoute from "./components/common/PrivateRoute";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import DashboardPage from "./pages/DashboardPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +34,7 @@ function App() {
               path="/dashboard"
               element={
                 <PrivateRoute>
-                  <HomePage />
+                  <DashboardPage />
                 </PrivateRoute>
               }
             />
@@ -40,7 +42,7 @@ function App() {
               path="/analytics/:shortCode"
               element={
                 <PrivateRoute>
-                  <HomePage />
+                  <AnalyticsPage />
                 </PrivateRoute>
               }
             />
