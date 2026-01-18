@@ -4,6 +4,7 @@ import cors from "cors";
 import Configuration from "./config/env.js";
 import database from "./config/database.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
+import URLController from "./controllers/URLController.js";
 
 import routes from './routes/index.js';
 
@@ -46,6 +47,9 @@ app.get("/health", async (req: Request, res: Response) => {
 
 // API routes will be added below:
 app.use('/api/v1', routes);
+
+// Short URL redirect route (must be after API routes)
+app.get('/:shortCode', URLController.redirectURL);
 
 app.use(notFoundHandler);
 
