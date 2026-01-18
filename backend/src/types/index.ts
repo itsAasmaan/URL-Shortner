@@ -19,7 +19,7 @@ export interface URL {
   id: number;
   short_code: string;
   original_url: string;
-  custom_alias: boolean;
+  alias: boolean;
   user_id?: string;
   created_at: Date;
   expires_at?: Date;
@@ -110,7 +110,7 @@ export interface URLValidationSchema {
 export interface CachedURL {
   original_url: string;
   expires_at?: Date;
-  is_active: boolean;
+  active: boolean;
 }
 
 export interface CacheOptions {
