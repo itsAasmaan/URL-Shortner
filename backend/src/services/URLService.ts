@@ -105,7 +105,7 @@ class URLService {
         originalUrl: stats.original_url,
         createdAt: stats.created_at,
         expiresAt: stats.expires_at,
-        isActive: stats.active,
+        active: stats.active,
         totalClicks: parseInt(stats.total_clicks, 10),
         lastClicked: stats.last_clicked,
       };
@@ -129,7 +129,7 @@ class URLService {
         originalUrl: url.original_url,
         createdAt: url.created_at,
         expiresAt: url.expires_at,
-        isActive: url.active,
+        active: url.active,
       }));
 
       return {

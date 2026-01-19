@@ -130,7 +130,7 @@ class URLController {
       success: true,
       data: {
         shortCode: updated?.short_code,
-        isActive: updated?.active,
+        active: updated?.active,
       },
       message: "URL updated successfully",
     });

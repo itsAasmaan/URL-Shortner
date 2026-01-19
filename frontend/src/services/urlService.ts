@@ -40,7 +40,7 @@ class URLService {
   /**
    * Update URL
    */
-  async updateURL(shortCode: string, data: { isActive: boolean }): Promise<URL> {
+  async updateURL(shortCode: string, data: { active: boolean }): Promise<URL> {
     const response = await api.put<APIResponse<URL>>(`/api/v1/urls/${shortCode}`, data);
     return response.data.data!;
   }
