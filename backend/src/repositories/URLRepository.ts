@@ -71,7 +71,7 @@ class URLRepository {
   async findByUserId(userId: string, limit: number = 50, offset: number = 0): Promise<URL[]> {
     const query = `
       SELECT * FROM urls 
-      WHERE user_id = $1 
+      WHERE user_id = $1 AND active = true
       ORDER BY created_at DESC
       LIMIT $2 OFFSET $3
     `;
