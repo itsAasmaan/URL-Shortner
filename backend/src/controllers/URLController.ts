@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import URLService from "../services/URLService.js";
+import AnalyticsService from "../services/AnalyticsService.js";
 import URLRepository from "../repositories/URLRepository.js";
 import { CreateURLDTO, AuthRequest } from "../types/index.js";
 import { asyncHandler } from "../middleware/errorHandler.js";
@@ -33,6 +34,20 @@ class URLController {
   redirectURL = asyncHandler(async (req: Request, res: Response) => {
     const shortCode = req.params.shortCode as string;
     const originalUrl = await URLService.getOriginalURL(shortCode);
+
+    // Get URL ID for analytics
+    const url = await URLRepository.findByShortCode(shortCode);
+    if (url) {
+      // Record analytics asynchronously
+      AnalyticsService.recordClick({
+        url_id: url.id,
+        ip_address: req.ip,
+        user_agent: req.get('user-agent'),
+        referrer: req.get('referer'),
+        country: AnalyticsService.getCountryFromIP(req.ip || ''),
+      }).catch(err => {
+      });
+    }
 
     // Redirect to original URL
     res.redirect(301, originalUrl);
