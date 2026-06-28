@@ -5,6 +5,7 @@ import Configuration from "./config/env.js";
 import database from "./config/database.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 import URLController from "./controllers/URLController.js";
+import { runMigrations } from "./migrations/migrate.js";
 
 import routes from './routes/index.js';
 
@@ -57,11 +58,15 @@ app.use(errorHandler);
 
 const startServer = async () => {
   try {
+    console.log("Running database migrations...");
+    await runMigrations();
+
     app.listen(Configuration.port, () => {
       console.log(`Server running on port ${Configuration.port} in ${Configuration.nodeEnv} mode`);
       console.log(`Base URL: ${Configuration.baseURL}`);
     });
   } catch (error) {
+    console.error("Failed to start server:", error);
     process.exit(1);
   }
 };
